@@ -1,25 +1,12 @@
 {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "next/core-web-vitals"
-  ],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["airbnb", "prettier", "next/core-web-vitals"],
+  "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": [
-      "error"
-    ],
+    "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          "ts",
-          "tsx"
-        ]
+        "extensions": [".js", ".jsx", "ts", "tsx"]
       }
     ]
   }

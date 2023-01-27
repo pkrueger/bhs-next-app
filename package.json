@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "p": "npx prettier -w"
+    "prelint": "yarn prettier -w .",
+    "p": "yarn prettier -w"
   },
   "dependencies": {
     "@next/font": "13.1.4",
