@@ -18,6 +18,7 @@
 *.pem
 /public
 yarn.lock
+*.json
 
 # debug
 npm-debug.log*
