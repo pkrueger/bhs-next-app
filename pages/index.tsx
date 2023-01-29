@@ -1,8 +1,22 @@
+import { TDog } from "@/common/types";
+import api from "@/utils/axios";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 // import Image from "next/image";
 // import styles from "@/styles/Home.module.css";
 
 export default function Home() {
+  const [allDogs, setAllDogs] = useState<TDog[]>([]);
+
+  async function getAllDogs() {
+    const res = await api.get("api/dogs");
+    setAllDogs(res.data);
+  }
+
+  useEffect(() => {
+    getAllDogs();
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,6 +27,7 @@ export default function Home() {
       </Head>
       <main>
         <h1 className="bg-red-800 text-center text-3xl text-emerald-500">Hello World!</h1>
+        {allDogs.map((dog) => dog.name)}
       </main>
     </>
   );
