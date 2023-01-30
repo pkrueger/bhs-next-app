@@ -1,26 +1,21 @@
 import dbConnect from "@/db/dbConnect";
-import { createDog, getAllDogs } from "@/services/dogs";
+import { getAllTracks } from "@/services/tracks";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { method, body } = req;
+  const { method } = req;
 
   try {
     await dbConnect.connect();
 
     switch (method) {
       case "GET": {
-        const allDogs = await getAllDogs();
-        res.status(200).send(allDogs);
-        break;
-      }
-      case "POST": {
-        const newDog = await createDog(body);
-        res.status(200).send(newDog);
+        const tracks = await getAllTracks();
+        res.status(200).send(tracks);
         break;
       }
       default:
-        res.status(405).send(`Method ${method} not implemented`);
+        res.status(405).send("Method not implemented");
         break;
     }
   } catch (e: any) {

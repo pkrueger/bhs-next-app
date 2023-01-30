@@ -1,4 +1,5 @@
-import { TDog } from "@/common/types";
+/* eslint-disable jsx-a11y/media-has-caption */
+import { TTrack } from "@/common/types";
 import api from "@/utils/axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -6,15 +7,15 @@ import { useEffect, useState } from "react";
 // import styles from "@/styles/Home.module.css";
 
 export default function Home() {
-  const [allDogs, setAllDogs] = useState<TDog[]>([]);
+  const [tracks, setTracks] = useState<TTrack[]>([]);
 
-  async function getAllDogs() {
-    const res = await api.get("api/dogs");
-    setAllDogs(res.data);
+  async function getAllTracks() {
+    const res = await api.get("api/tracks");
+    setTracks(res.data);
   }
 
   useEffect(() => {
-    getAllDogs();
+    getAllTracks();
   }, []);
 
   return (
@@ -26,8 +27,19 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main>
-        <h1 className="bg-red-800 text-center text-3xl text-emerald-500">Hello World!</h1>
-        {allDogs.map((dog) => dog.name)}
+        <h1 className="text-center text-3xl">Music</h1>
+        <div className="grid grid-cols-3 gap-3 p-3">
+          {tracks.map((track) => (
+            <div key={track.id}>
+              <div>
+                {track.name} {track.album}
+              </div>
+              <audio controls>
+                <source src={track.link} type="audio/wav" />
+              </audio>
+            </div>
+          ))}
+        </div>
       </main>
     </>
   );
