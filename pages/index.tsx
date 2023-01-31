@@ -27,7 +27,7 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main>
-        <h1 className="text-center text-3xl">Music</h1>
+        <h1 className="text-center text-3xl">2006-2007</h1>
         <div className="grid grid-cols-3 gap-3 p-3">
           {tracks.map((track) => (
             <div key={track.id}>

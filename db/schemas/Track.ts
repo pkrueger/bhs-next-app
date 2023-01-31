@@ -3,10 +3,9 @@ import { SCHEMA_OPTIONS } from "../dbUtils";
 
 const { Schema } = mongoose;
 
-const trackSchema = new Schema(
+const TrackSchema = new Schema(
   {
-    year: { type: String, default: null },
-    classId: { type: Number, default: null, ref: "Class" },
+    classId: { type: Number, ref: "Class" },
     album: { type: String, default: null },
     track: { type: Number, required: true },
     name: { type: String, required: true },
@@ -16,5 +15,11 @@ const trackSchema = new Schema(
   SCHEMA_OPTIONS
 );
 
-const Track = mongoose.models.Track || mongoose.model("Track", trackSchema);
-export default Track;
+TrackSchema.virtual("class", {
+  ref: "Class",
+  localField: "classId",
+  foreignField: "_id",
+  justOne: true,
+});
+
+export default TrackSchema;

@@ -1,8 +1,8 @@
 import { TTrack } from "@/common/types";
-import Track from "@/db/schemas/Track";
+import db from "@/db/db";
 
 export async function getAllTracks() {
-  const tracks: TTrack[] = await Track.find();
+  const tracks: TTrack[] = await db.Tracks.find().populate("class");
   return tracks;
 }
 
